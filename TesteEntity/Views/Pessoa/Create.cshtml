@@ -1,0 +1,63 @@
+﻿@model TesteEntity.Models.Pessoa
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Pessoa</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Endereco.NomeRua" class="control-label"></label>
+                <input asp-for="Endereco.NomeRua" class="form-control" />
+                <span asp-validation-for="Endereco.NomeRua" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Telefone.Numero" class="control-label"></label>
+                <input asp-for="Telefone.Numero" class="form-control" />
+                <span asp-validation-for="Telefone.Numero" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+
+            <select asp-for="listaInts" class="form-control" asp-items="@(new SelectList(ViewBag.opcoes, "id", "nome"))">
+                <option selected="selected">Selecione...</option>
+            </select>
+
+            <select class="mdb-select md-form" multiple asp-items="@(new SelectList(ViewBag.opcoes, "id", "nome"))">
+                <option value="" disabled selected>Choose your country</option>
+            </select>
+
+            <div class="row">
+                <div class="col-md-12">
+
+                    <select class="mdb-select colorful-select dropdown-primary md-form" multiple searchable="Search here..">
+                        <option value="" disabled selected>Choose your country</option>
+                        <option value="1">USA</option>
+                        <option value="2">Germany</option>
+                        <option value="3">France</option>
+                        <option value="4">Poland</option>
+                        <option value="5">Japan</option>
+                    </select>
+                    <label class="mdb-main-label">Label example</label>
+                    <button class="btn-save btn btn-primary btn-sm">Save</button>
+
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
